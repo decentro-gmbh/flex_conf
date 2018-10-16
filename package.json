@@ -4,7 +4,7 @@
   "description": "Flexible, tag-based configuration file management.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "gen-doc": "jsdoc2md lib/flex-conf.js"
   },
   "repository": {
     "type": "git",
@@ -23,6 +23,7 @@
   "devDependencies": {
     "eslint": "^5.7.0",
     "eslint-config-airbnb-base": "^13.1.0",
-    "eslint-plugin-import": "^2.14.0"
+    "eslint-plugin-import": "^2.14.0",
+    "jsdoc-to-markdown": "^4.0.1"
   }
 }
