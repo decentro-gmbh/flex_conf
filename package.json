@@ -1,0 +1,28 @@
+{
+  "name": "flex_conf",
+  "version": "1.0.0",
+  "description": "Flexible, tag-based configuration file management.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@bitbucket.org/derbenoo/flex_conf.git"
+  },
+  "keywords": [
+    "config"
+  ],
+  "author": "Decentro GmbH",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/derbenoo/flex_conf#readme",
+  "dependencies": {
+    "debug": "^4.1.0",
+    "nconf": "^0.10.0"
+  },
+  "devDependencies": {
+    "eslint": "^5.7.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0"
+  }
+}
