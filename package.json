@@ -1,6 +1,6 @@
 {
   "name": "flex_conf",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Flexible, tag-based configuration file management.",
   "main": "index.js",
   "scripts": {
