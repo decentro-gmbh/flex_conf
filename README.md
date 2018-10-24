@@ -13,7 +13,10 @@ npm install flex_conf
 
 # Example
 
+A minimal config module using `flex_conf` looks like this:
+
 ``` js
+# config.js
 const FlexConf = require('flex-conf');
 
 const conf = new FlexConf('configs', {
@@ -35,7 +38,30 @@ const conf = new FlexConf('configs', {
 module.exports = conf.final();
 ```
 
-<a name="FlexConf"></a>
+We can now create various configuration files inside the `configs/` directory that will be parsed based on the value of the `NODE_ENV` environment variable:
+
+```
+configs/
+├── database.env-dev.json
+├── database.env-prod.json
+└── database.json
+```
+
+For example, `NODE_ENV=development` would result in the `database.env-dev.json` file being loaded first, followed by the `database.json` as it is unconditionally loaded in any case (as no tags are specified).
+
+To access the final configuration object in another module, we simply require the config module:
+``` js
+# example.js
+const config = require('./config');
+
+function connect() {
+  console.log(`Connection to database '${config.database.username}@${config.database.host}:${config.database.port}'`);
+}
+
+connect();
+```
+
+**Note:** This example is also included in the Bitbucket repository under `example/`.
 
 # API Documentation
 
