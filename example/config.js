@@ -24,4 +24,8 @@ const conf = new FlexConf(path.join(__dirname, 'configs'), {
   },
 });
 
+const filepath = conf.saveToFile('database', null, 2);
+
+console.log(`Saved 'database' namespace configuration file: ${filepath}`);
+
 module.exports = conf.final();

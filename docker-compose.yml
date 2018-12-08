@@ -9,7 +9,7 @@
 version: '3.2'
 
 services:
-  sequelize_inquirer:
+  flex_conf:
     container_name: flex_conf
     build:
       context: .
