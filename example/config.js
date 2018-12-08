@@ -24,7 +24,7 @@ const conf = new FlexConf(path.join(__dirname, 'configs'), {
   },
 });
 
-const filepath = conf.saveToFile('database', null, 2);
+const filepath = conf.saveToFile('database', { space: 2 });
 
 console.log(`Saved 'database' namespace configuration file: ${filepath}`);
 
