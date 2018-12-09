@@ -83,6 +83,7 @@ FlexConf class, representing the entire config of the config folder
 * [FlexConf](#FlexConf)
     * [new FlexConf(configFolder, options)](#new_FlexConf_new)
     * [.loadConfigFiles()](#FlexConf+loadConfigFiles)
+    * [.saveToFile(namespace, [options])](#FlexConf+saveToFile) ⇒ <code>string</code>
     * [.final()](#FlexConf+final)
 
 <a name="new_FlexConf_new"></a>
@@ -111,6 +112,24 @@ Create a new configuration instance.
 Load all configuration files inside the root config folder and it's sub-folders if loadRecursive is activated.
 
 **Kind**: instance method of [<code>FlexConf</code>](#FlexConf)
+<a name="FlexConf+saveToFile"></a>
+
+### flexConf.saveToFile(namespace, [options]) ⇒ <code>string</code>
+Save a config namespace to a file.
+
+**Kind**: instance method of [<code>FlexConf</code>](#FlexConf)
+**Returns**: <code>string</code> - Path of the saved config file.
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| namespace | <code>string</code> |  | Config namespace to save to a file. |
+| [options] | <code>Object</code> | <code>{}</code> | Options object. |
+| [options.filepath] | <code>string</code> |  | Path to save the config file to, defaults to "[os.tmpdir()]/[namespace].json". |
+| [options.space] | <code>string</code> \| <code>number</code> |  | A String or Number object that's used to insert white space into the output JSON string for readability purposes.|
+| [options.encoding] | <code>string</code> | <code>&quot;\&quot;utf8\&quot;&quot;</code> | File encoding, default to "utf8". |
+| [options.flag] | <code>string</code> | <code>&quot;\&quot;w\&quot;&quot;</code> | Write operation flags, defaults to "w". |
+| [options.mode] | <code>number</code> | <code>0o600</code> | File permissions, default to read-only for the owner. |
+
 <a name="FlexConf+final"></a>
 
 ### flexConf.final()
