@@ -5,14 +5,23 @@
 
 'use strict';
 
-const debug = require('debug')('flex_conf');
-const path = require('path');
-const fs = require('fs');
+import * as debug from 'debug';
+import * as fs from 'fs';
+import * as path from 'path';
 
 /**
  * Configuration file class, representing a single configuration file inside the configuration folder or one of its sub-folders.
  */
-class ConfigFile {
+export class ConfigFile {
+  filepath: string;
+  configFolder: string;
+  folderTags: Array<any>;
+  tagDefinitions: any;
+  tagSeparator: string;
+  keyValSeparator: string;
+  tags: any;
+  namespace: string;
+
   /**
    * Create a new configuration file.
    * @param {string} filepath - Path to the configuration file.
@@ -23,7 +32,7 @@ class ConfigFile {
    * @param {string} [options.tagSeparator='.'] - Seperation character for tags inside the filename.
    * @param {string} [options.keyValSeparator='-'] - Seperation character for a tag's key and value.
    */
-  constructor(filepath, options = {}) {
+  constructor(filepath, options: any = {}) {
     this.filepath = filepath;
     this.configFolder = options.configFolder;
     this.folderTags = options.folderTags;
@@ -110,5 +119,3 @@ class ConfigFile {
     }
   }
 }
-
-module.exports = ConfigFile;

@@ -5,19 +5,33 @@
 
 'use strict';
 
-const debug = require('debug')('flex_conf');
-const os = require('os');
-const fs = require('fs');
-const path = require('path');
-const nconf = require('nconf');
-const ConfigFile = require('./config-file');
-const TagDefinition = require('./tag-definition');
-const { getFilesFromDir } = require('./utils');
+import * as debug from 'debug';
+import * as os from 'os';
+import * as fs from 'fs';
+import * as path from 'path';
+import * as nconf from 'nconf';
+import { ConfigFile } from './config-file'
+import { TagDefinition } from './tag-definition'
+import { getFilesFromDir } from './utils'
 
 /**
  * FlexConf class, representing the entire config of the config folder
  */
-class FlexConf {
+export class FlexConf {
+  configFolder: string;
+  loadRecursive: boolean;
+  folderTags: boolean;
+  postfix: string;
+  parseArgv: boolean;  
+  parseEnv: boolean;
+  autoload: boolean;
+  separator: string;
+  lowerCase: boolean;
+  parseValues: boolean;
+  tagDefinitions: Object;
+  configFiles: Array<any>;
+  store: any;
+
   /**
    * Create a new configuration instance.
    * @param {string} configFolder - Path to the folder that holds all configuration files.
@@ -33,7 +47,7 @@ class FlexConf {
    * @param {boolean} [options.parseValues=false] - Attempt to parse well-known values (e.g. 'false', 'true', 'null', 'undefined', '3', '5.1' and JSON values) into their proper types. If a value cannot be parsed, it will remain a string.
    * @param {boolean} [options.autoload=true] - Whether to automatically load all configuration files on instantiation.
    */
-  constructor(configFolder, options = {}) {
+  constructor(configFolder: string, options: any = {}) {
     // Filesystem options
     this.configFolder = configFolder;
     this.loadRecursive = options.loadRecursive !== undefined ? options.loadRecursive : true;
@@ -132,7 +146,7 @@ class FlexConf {
    * @param {number} [options.mode=0o600] - File permissions, default to read-only for the owner.
    * @returns {string} Path of the saved config file.
    */
-  saveToFile(namespace, options = {}) {
+  saveToFile(namespace, options: any = {}) {
     const configObject = this.store.get(namespace);
     if (!options.filepath) {
       options.filepath = path.join(os.tmpdir(), `${namespace}.json`);
@@ -153,5 +167,3 @@ class FlexConf {
     return this.store.get();
   }
 }
-
-module.exports = FlexConf;

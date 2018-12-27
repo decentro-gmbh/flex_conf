@@ -5,8 +5,8 @@
 
 'use strict';
 
-const path = require('path');
-const fs = require('fs');
+import * as fs from 'fs';
+import * as path from 'path';
 
 /**
  * Get all <filetype> files from a directory and all its sub-directories.
@@ -15,7 +15,7 @@ const fs = require('fs');
  * @param {boolean} recursive - Whether to get files from sub-directories.
  * @returns {Array<string>} Array of paths of the found '.<filetype>' files (sorted).
  */
-function getFilesFromDir(dirpath, filetype = null, recursive = false) {
+export function getFilesFromDir(dirpath, filetype = null, recursive = false) {
   // Make sure path is absolute
   dirpath = path.isAbsolute(dirpath) ? dirpath : path.join(__dirname, dirpath);
 
@@ -50,7 +50,3 @@ function getFilesFromDir(dirpath, filetype = null, recursive = false) {
 
   return files;
 }
-
-module.exports = {
-  getFilesFromDir,
-};

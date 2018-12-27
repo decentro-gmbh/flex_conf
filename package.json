@@ -1,6 +1,6 @@
 {
   "name": "flex_conf",
-  "version": "1.0.7",
+  "version": "2.0.0",
   "description": "Flexible, tag-based configuration file management.",
   "main": "index.js",
   "scripts": {
@@ -19,14 +19,15 @@
   "homepage": "https://bitbucket.org/derbenoo/flex_conf#readme",
   "dependencies": {
     "debug": "^4.1.0",
-    "nconf": "^0.10.0"
+    "nconf": "~0.10.0"
   },
   "devDependencies": {
-    "@types/node": "^10.12.0",
+    "@types/node": "^10.12.18",
     "eslint": "^5.7.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsdoc": "^3.8.0",
-    "jsdoc-to-markdown": "^4.0.1"
+    "jsdoc-to-markdown": "^4.0.1",
+    "typescript": "^3.2.2"
   }
 }
