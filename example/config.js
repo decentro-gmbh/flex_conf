@@ -6,7 +6,7 @@
 'use strict';
 
 const path = require('path');
-const FlexConf = require('../lib/flex-conf');
+const { FlexConf } = require('../dist/flex-conf');
 
 const conf = new FlexConf(path.join(__dirname, 'configs'), {
   tagDefinitions: {

@@ -7,8 +7,12 @@
 #
 ####################################################################################
 
-FROM node:10.6.0-stretch
+FROM node:10.14-stretch
 LABEL maintainer="Benjamin Assadsolimani"
 WORKDIR /app
+
+# Add bin folder of node_modules to PATH
+ENV PATH="/app/node_modules/.bin:${PATH}"
+
 # Keep container alive so that a dev can attach to it with a shell
 ENTRYPOINT tail -f /dev/null

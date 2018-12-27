@@ -5,7 +5,12 @@
 
 'use strict';
 
-class TagDefinition {
+export class TagDefinition {
+  name: string;
+  applies: Function;
+  map: Function;
+  score: Function;
+
   /**
    * Create a new TagDefinition instance.
    * @param {string} name - Name of the tag.
@@ -21,5 +26,3 @@ class TagDefinition {
     this.score = options.score || function () { return 1; };
   }
 }
-
-module.exports = TagDefinition;
