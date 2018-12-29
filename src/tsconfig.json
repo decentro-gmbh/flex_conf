@@ -4,8 +4,8 @@
     "module": "commonjs",
     "target": "es2017",
     "alwaysStrict": true,
-    "outDir": "./dist",
-    "baseUrl": "./lib",
+    "outDir": "../dist",
+    "baseUrl": "./",
     "sourceMap": false,
     "declaration": true,
     "moduleResolution": "node",
@@ -13,7 +13,7 @@
     "experimentalDecorators": true,
     "removeComments": true,
     "typeRoots": [
-      "node_modules/@types"
+      "./../node_modules/@types"
     ],
     "lib": [
       "es2017"

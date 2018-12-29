@@ -10,10 +10,11 @@
     "LICENSE"
   ],
   "scripts": {
-    "build": "tsc",
+    "build": "tsc -p src/",
+    "test": "jest --config test/jest.config.json",
     "debug": "node --inspect=0.0.0.0 --inspect-brk example/example.js",
     "start": "npm run build && node example/example.js",
-    "gen-doc": "typedoc --hideGenerator --includes lib/ --out doc/"
+    "gen-doc": "typedoc --hideGenerator --includes src/ --out doc/"
   },
   "prepublishOnly": "npm run build",
   "repository": {
@@ -25,18 +26,20 @@
   ],
   "author": "Decentro GmbH",
   "license": "MIT",
-  "homepage": "https://github.com/decentro-gmbh/flex_conf/blob/master/README.md",
+  "homepage": "https://decentro-gmbh.github.io/flex_conf",
   "dependencies": {
     "debug": "^4.1.0",
     "nconf": "~0.10.0"
   },
   "devDependencies": {
+    "@types/jest": "^23.3.10",
     "@types/node": "^10.12.18",
     "eslint": "^5.7.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsdoc": "^3.8.0",
     "jest": "^23.6.0",
+    "ts-jest": "^23.10.5",
     "typedoc": "^0.13.0",
     "typescript": "^3.2.2"
   }
