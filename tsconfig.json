@@ -7,7 +7,7 @@
     "outDir": "./dist",
     "baseUrl": "./lib",
     "sourceMap": false,
-    "declaration": false,
+    "declaration": true,
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
