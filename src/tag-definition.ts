@@ -20,7 +20,11 @@ export class TagDefinition {
    * @param options.map - Function to transform a tag value before further processing it.
    * @param options.score - Function to compute a score value for the tag.
    */
-  constructor(name: string, options: {applies?: Function, map?: Function, score?: Function} = {}) {
+  constructor(name: string, options: {
+    applies?: Function,
+    map?: Function,
+    score?: Function
+  } = {}) {
     this.name = name;
     this.applies = options.applies || function () { return false; };
     this.map = options.map || function (val) { return val; };

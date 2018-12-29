@@ -10,9 +10,9 @@ import * as os from 'os';
 import * as fs from 'fs';
 import * as path from 'path';
 import * as nconf from 'nconf';
-import { ConfigFile } from './config-file'
-import { TagDefinition } from './tag-definition'
-import { getFilesFromDir } from './utils'
+import { ConfigFile } from './config-file';
+import { TagDefinition } from './tag-definition';
+import { getFilesFromDir } from './utils';
 
 /**
  * FlexConf class, representing the entire config of the config folder
@@ -22,32 +22,43 @@ export class FlexConf {
   loadRecursive: boolean;
   folderTags: boolean;
   postfix: string;
-  parseArgv: boolean;  
+  parseArgv: boolean;
   parseEnv: boolean;
   autoload: boolean;
   separator: string;
   lowerCase: boolean;
   parseValues: boolean;
   tagDefinitions: Object;
-  configFiles: Array<any>;
-  store: any;
+  configFiles: Array<ConfigFile>;
+  store: nconf.Provider;
 
   /**
    * Create a new configuration instance.
-   * @param {string} configFolder - Path to the folder that holds all configuration files.
-   * @param {Object} options - Configuration options.
-   * @param {Object} [options.tagDefinitions={}] - Tag definitions.
-   * @param {boolean} [options.loadRecursive=true] - Whether to load sub-folders of the configuration folder recursively.
-   * @param {boolean} [options.folderTags=true] - Whether to parse sub-folder names as tags if applicable.
-   * @param {boolean} [options.parseArgv=true] - Whether to parse command line arguments.
-   * @param {boolean} [options.parseEnv=true] - Whether to parse environment variables.
-   * @param {string} [options.separator='__'] - Seperator for environment variables.
-   * @param {string} [options.postfix='json'] - Seperator for environment variables.
-   * @param {boolean} [options.lowerCase=true] - Whether to lower-case environment variables.
-   * @param {boolean} [options.parseValues=false] - Attempt to parse well-known values (e.g. 'false', 'true', 'null', 'undefined', '3', '5.1' and JSON values) into their proper types. If a value cannot be parsed, it will remain a string.
-   * @param {boolean} [options.autoload=true] - Whether to automatically load all configuration files on instantiation.
+   * @param configFolder - Path to the folder that holds all configuration files.
+   * @param options - Configuration options.
+   * @param options.tagDefinitions - Tag definitions.
+   * @param options.loadRecursive - Whether to load sub-folders of the configuration folder recursively (default: true).
+   * @param options.folderTags - Whether to parse sub-folder names as tags if applicable (default: true).
+   * @param options.parseArgv - Whether to parse command line arguments (default: true).
+   * @param options.parseEnv - Whether to parse environment variables (default: true).
+   * @param options.separator - Seperator for environment variables (default: '__').
+   * @param options.postfix - Seperator for environment variables (default: 'json').
+   * @param options.lowerCase - Whether to lower-case environment variables (default: false).
+   * @param options.parseValues - Attempt to parse well-known values (e.g. 'false', 'true', 'null', 'undefined', '3', '5.1' and JSON values) into their proper types. If a value cannot be parsed, it will remain a string (default: false).
+   * @param options.autoload - Whether to automatically load all configuration files on instantiation (default: true).
    */
-  constructor(configFolder: string, options: any = {}) {
+  constructor(configFolder: string, options: {
+    tagDefinitions?: Object,
+    loadRecursive?: boolean,
+    folderTags?: boolean,
+    parseArgv?: boolean,
+    parseEnv?: boolean,
+    separator?: string,
+    postfix?: string,
+    lowerCase?: boolean,
+    parseValues?: boolean,
+    autoload?: boolean
+  } = {}) {
     // Filesystem options
     this.configFolder = configFolder;
     this.loadRecursive = options.loadRecursive !== undefined ? options.loadRecursive : true;
@@ -61,7 +72,7 @@ export class FlexConf {
 
     // Environment variable parsing options
     this.separator = options.separator || '__';
-    this.lowerCase = options.lowerCase !== undefined ? options.lowerCase : true;
+    this.lowerCase = options.lowerCase !== undefined ? options.lowerCase : false;
     this.parseValues = options.parseValues !== undefined ? options.parseValues : false;
 
     // Instantiate tag definitions
@@ -92,7 +103,7 @@ export class FlexConf {
   /**
    * Load all configuration files inside the root config folder and it's sub-folders if loadRecursive is activated.
    */
-  loadConfigFiles() {
+  loadConfigFiles(): void {
     // Get all config files
     const filenames = getFilesFromDir(this.configFolder, this.postfix, this.loadRecursive);
     filenames.forEach((filename) => {
@@ -137,16 +148,22 @@ export class FlexConf {
 
   /**
    * Save a config namespace to a file.
-   * @param {string} namespace - Config namespace to save to a file.
-   * @param {Object} [options={}] - Options object.
-   * @param {string} [options.filepath] - Path to save the config file to, defaults to "[os.tmpdir()]/[namespace].json".
-   * @param {string|number} [options.space] - A String or Number object that's used to insert white space into the output JSON string for readability purposes.
-   * @param {string} [options.encoding="utf8"] - File encoding, default to "utf8".
-   * @param {string} [options.flag="w"] - Write operation flags, defaults to "w".
-   * @param {number} [options.mode=0o600] - File permissions, default to read-only for the owner.
-   * @returns {string} Path of the saved config file.
+   * @param  namespace - Config namespace to save to a file.
+   * @param  options - Options object.
+   * @param  options.filepath - Path to save the config file to, defaults to '[os.tmpdir()]/[namespace].json'.
+   * @param  options.space - A String or Number object that's used to insert white space into the output JSON string for readability purposes.
+   * @param  options.encoding - File encoding, default to 'utf8'.
+   * @param  options.flag - Write operation flags, defaults to 'w'.
+   * @param  options.mode - File permissions, default to read-only for the owner (0o600).
+   * @returns Path of the saved config file.
    */
-  saveToFile(namespace, options: any = {}) {
+  saveToFile(namespace: string, options: {
+    filepath?: string,
+    space?: string|number,
+    encoding?: string
+    flag?: string
+    mode?: number
+  } = {}): string {
     const configObject = this.store.get(namespace);
     if (!options.filepath) {
       options.filepath = path.join(os.tmpdir(), `${namespace}.json`);
@@ -163,7 +180,7 @@ export class FlexConf {
   /**
    * Return a final configuration object.
    */
-  final() {
+  final(): Object {
     return this.store.get();
   }
 }
