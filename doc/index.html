@@ -1,0 +1,406 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>flex_conf</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.js" data-base=".">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="index.html" class="title">flex_conf</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+							<input type="checkbox" id="tsd-filter-only-exported" />
+							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="globals.html">Globals</a>
+				</li>
+			</ul>
+			<h1> flex_conf</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<div class="tsd-panel tsd-typography">
+				<h1 id="flex_conf">flex_conf</h1>
+				<p>Flexible configuration file management.</p>
+				<p>Based on the <a href="https://www.npmjs.com/package/nconf">nconf</a> package, the flex_conf package provides tag-based, hierarchical configuration file loading with atomic object merging. It is possible to register one or more &quot;tags&quot; e.g., <code>env</code> for environment-specific configuration files. These tags can then be used inside the configuration file&#39;s filename and/ or in folder names to conditionally load the configuration file.</p>
+				<h1 id="installation">Installation</h1>
+				<p>Installation is straight forward with npm:</p>
+				<pre><code>npm <span class="hljs-keyword">install</span> flex_conf</code></pre><h1 id="example">Example</h1>
+				<p>A minimal config module using <code>flex_conf</code> looks like this:</p>
+				<pre><code class="language-js"># config.js
+const FlexConf = require('flex-conf');
+
+const conf = new FlexConf('configs', {
+  tagDefinitions: {
+    env: {
+      applies: value =&gt; process.env.NODE_ENV === value,
+      map: (value) =&gt; {
+        switch (value) {
+          case 'dev': return 'development';
+          case 'prod': return 'production';
+          case 'test': return 'test';
+          default: throw Error(`Unknown NODE_ENV in configfile name: '${value}'`);
+        }
+      },
+    },
+  },
+});
+
+module.exports = conf.final();</code></pre>
+				<p>We can now create various configuration files inside the <code>configs/</code> directory that will be parsed based on the value of the <code>NODE_ENV</code> environment variable:</p>
+				<pre><code>configs/
+├── <span class="hljs-keyword">database</span>.env-dev.json
+├── <span class="hljs-keyword">database</span>.env-prod.json
+└── <span class="hljs-keyword">database</span>.json</code></pre><p>For example, <code>NODE_ENV=development</code> would result in the <code>database.env-dev.json</code> file being loaded first, followed by the <code>database.json</code> as it is unconditionally loaded in any case (as no tags are specified).</p>
+				<p>To access the final configuration object in another module, we simply require the config module:</p>
+				<pre><code class="language-js"># example.js
+const config = require(&#39;./config&#39;);
+
+function connect() {
+  console.log(`Connection to database &#39;${config.database.username}@${config.database.host}:${config.database.port}&#39;`);
+}
+
+connect();</code></pre>
+				<p><strong>Note:</strong> This example is also included in the Bitbucket repository under <code>example/</code>.</p>
+				<h1 id="api-documentation">API Documentation</h1>
+				<dl>
+					<dt><a href="#FlexConf">FlexConf</a></dt>
+					<dd><p>FlexConf class, representing the entire config of the config folder</p>
+					</dd>
+					<dt><a href="#TagDefinition">TagDefinition</a></dt>
+					<dd></dd>
+				</dl>
+				<p><a name="FlexConf"></a></p>
+				<h2 id="flexconf">FlexConf</h2>
+				<p>FlexConf class, representing the entire config of the config folder</p>
+				<p><strong>Kind</strong>: global class</p>
+				<ul>
+					<li><a href="#FlexConf">FlexConf</a><ul>
+							<li><a href="#new_FlexConf_new">new FlexConf(configFolder, options)</a></li>
+							<li><a href="#FlexConf+loadConfigFiles">.loadConfigFiles()</a></li>
+							<li><a href="#FlexConf+saveToFile">.saveToFile(namespace, [options])</a> ⇒ <code>string</code></li>
+							<li><a href="#FlexConf+final">.final()</a></li>
+						</ul>
+					</li>
+				</ul>
+				<p><a name="new_FlexConf_new"></a></p>
+				<h3 id="new-flexconf-configfolder-options-">new FlexConf(configFolder, options)</h3>
+				<p>Create a new configuration instance.</p>
+				<table>
+					<thead>
+						<tr>
+							<th>Param</th>
+							<th>Type</th>
+							<th>Default</th>
+							<th>Description</th>
+						</tr>
+					</thead>
+					<tbody><tr>
+							<td>configFolder</td>
+							<td><code>string</code></td>
+							<td>| Path to the folder that holds all configuration files.</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>options</td>
+							<td><code>Object</code></td>
+							<td>| Configuration options.</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>[options.tagDefinitions]</td>
+							<td><code>Object</code></td>
+							<td><code>{}</code></td>
+							<td>Tag definitions.</td>
+						</tr>
+						<tr>
+							<td>[options.loadRecursive]</td>
+							<td><code>boolean</code></td>
+							<td><code>true</code></td>
+							<td>Whether to load sub-folders of the configuration folder recursively.</td>
+						</tr>
+						<tr>
+							<td>[options.folderTags]</td>
+							<td><code>boolean</code></td>
+							<td><code>true</code></td>
+							<td>Whether to parse sub-folder names as tags if applicable.</td>
+						</tr>
+						<tr>
+							<td>[options.parseArgv]</td>
+							<td><code>boolean</code></td>
+							<td><code>true</code></td>
+							<td>Whether to parse command line arguments.</td>
+						</tr>
+						<tr>
+							<td>[options.parseEnv]</td>
+							<td><code>boolean</code></td>
+							<td><code>true</code></td>
+							<td>Whether to parse environment variables.</td>
+						</tr>
+						<tr>
+							<td>[options.separator]</td>
+							<td><code>string</code></td>
+							<td><code>&quot;&#x27;__&#x27;&quot;</code></td>
+							<td>Seperator for environment variables.</td>
+						</tr>
+						<tr>
+							<td>[options.postfix]</td>
+							<td><code>string</code></td>
+							<td><code>&quot;&#x27;json&#x27;&quot;</code></td>
+							<td>Seperator for environment variables.</td>
+						</tr>
+						<tr>
+							<td>[options.lowerCase]</td>
+							<td><code>boolean</code></td>
+							<td><code>true</code></td>
+							<td>Whether to lower-case environment variables.</td>
+						</tr>
+						<tr>
+							<td>[options.autoload]</td>
+							<td><code>boolean</code></td>
+							<td><code>true</code></td>
+							<td>Whether to automatically load all configuration files on instantiation.</td>
+						</tr>
+				</tbody></table>
+				<p><a name="FlexConf+loadConfigFiles"></a></p>
+				<h3 id="flexconf-loadconfigfiles-">flexConf.loadConfigFiles()</h3>
+				<p>Load all configuration files inside the root config folder and it&#39;s sub-folders if loadRecursive is activated.</p>
+				<p><strong>Kind</strong>: instance method of <a href="#FlexConf"><code>FlexConf</code></a>
+				<a name="FlexConf+saveToFile"></a></p>
+				<h3 id="flexconf-savetofile-namespace-options-code-string-code-">flexConf.saveToFile(namespace, [options]) ⇒ <code>string</code></h3>
+				<p>Save a config namespace to a file.</p>
+				<p><strong>Kind</strong>: instance method of <a href="#FlexConf"><code>FlexConf</code></a>
+				<strong>Returns</strong>: <code>string</code> - Path of the saved config file.</p>
+				<table>
+					<thead>
+						<tr>
+							<th>Param</th>
+							<th>Type</th>
+							<th>Default</th>
+							<th>Description</th>
+						</tr>
+					</thead>
+					<tbody><tr>
+							<td>namespace</td>
+							<td><code>string</code></td>
+							<td>| Config namespace to save to a file.</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>[options]</td>
+							<td><code>Object</code></td>
+							<td><code>{}</code></td>
+							<td>Options object.</td>
+						</tr>
+						<tr>
+							<td>[options.filepath]</td>
+							<td><code>string</code></td>
+							<td>| Path to save the config file to, defaults to &quot;[os.tmpdir()]/[namespace].json&quot;.</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>[options.space]</td>
+							<td><code>string</code> | <code>number</code></td>
+							<td>| A String or Number object that&#39;s used to insert white space into the output JSON string for readability purposes.</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>[options.encoding]</td>
+							<td><code>string</code></td>
+							<td><code>&quot;&quot;utf8&quot;&quot;</code></td>
+							<td>File encoding, default to &quot;utf8&quot;.</td>
+						</tr>
+						<tr>
+							<td>[options.flag]</td>
+							<td><code>string</code></td>
+							<td><code>&quot;&quot;w&quot;&quot;</code></td>
+							<td>Write operation flags, defaults to &quot;w&quot;.</td>
+						</tr>
+						<tr>
+							<td>[options.mode]</td>
+							<td><code>number</code></td>
+							<td><code>0o600</code></td>
+							<td>File permissions, default to read-only for the owner.</td>
+						</tr>
+				</tbody></table>
+				<p><a name="FlexConf+final"></a></p>
+				<h3 id="flexconf-final-">flexConf.final()</h3>
+				<p>Return a final configuration object.</p>
+				<p><strong>Kind</strong>: instance method of <a href="#FlexConf"><code>FlexConf</code></a>
+				<a name="TagDefinition"></a></p>
+				<h2 id="tagdefinition">TagDefinition</h2>
+				<p><strong>Kind</strong>: global class
+				<a name="new_TagDefinition_new"></a></p>
+				<h3 id="new-tagdefinition-name-options-">new TagDefinition(name, options)</h3>
+				<p>Create a new TagDefinition instance.</p>
+				<table>
+					<thead>
+						<tr>
+							<th>Param</th>
+							<th>Type</th>
+							<th>Description</th>
+						</tr>
+					</thead>
+					<tbody><tr>
+							<td>name</td>
+							<td><code>string</code></td>
+							<td>Name of the tag.</td>
+						</tr>
+						<tr>
+							<td>options</td>
+							<td><code>Object</code></td>
+							<td>Tag options.</td>
+						</tr>
+						<tr>
+							<td>[options.applies]</td>
+							<td><code>function</code></td>
+							<td>Function to check whether the tag value applies -&gt; the configuration file is loaded.</td>
+						</tr>
+						<tr>
+							<td>[options.map]</td>
+							<td><code>function</code></td>
+							<td>Function to transform a tag value before further processing it.</td>
+						</tr>
+						<tr>
+							<td>[options.score]</td>
+							<td><code>function</code></td>
+							<td>Function to compute a score value for the tag.</td>
+						</tr>
+				</tbody></table>
+			</div>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="globals.html"><em>Globals</em></a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_config_file_.html">"config-<wbr>file"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_flex_conf_.html">"flex-<wbr>conf"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_tag_definition_.html">"tag-<wbr>definition"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_utils_.html">"utils"</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer>
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-module"><span class="tsd-kind-icon">Module</span></li>
+				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
+				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+				<li class="tsd-kind-enum-member"><span class="tsd-kind-icon">Enumeration member</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-enum"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-enum"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-interface"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-interface"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-class"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
+				<li class="tsd-kind-call-signature tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="overlay"></div>
+<script src="assets/js/main.js"></script>
+<script>if (location.protocol == 'file:') document.write('<script src="assets/js/search.js"><' + '/script>');</script>
+</body>
+</html>
