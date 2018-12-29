@@ -129,13 +129,13 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Flex<wbr>Conf<span class="tsd-signature-symbol">(</span>configFolder<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_flex_conf_.flexconf.html" class="tsd-signature-type">FlexConf</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Flex<wbr>Conf<span class="tsd-signature-symbol">(</span>configFolder<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_flex_conf_.flexconf.html" class="tsd-signature-type">FlexConf</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/decentro-gmbh/flex_conf/blob/6038122/lib/flex-conf.ts#L33">flex-conf.ts:33</a></li>
+									<li>Defined in <a href="https://github.com/decentro-gmbh/flex_conf/blob/a35563b/src/flex-conf.ts#L33">flex-conf.ts:33</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -154,12 +154,74 @@
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> options: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> =&nbsp;{}</span></h5>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> options: <span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> =&nbsp;{}</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<div class="lead">
 											<p>Configuration options.</p>
 										</div>
 									</div>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter">
+											<h5><span class="tsd-flag ts-flagOptional">Optional</span> autoload<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span></h5>
+											<div class="tsd-comment tsd-typography">
+												<p>Whether to automatically load all configuration files on instantiation (default: true).</p>
+											</div>
+										</li>
+										<li class="tsd-parameter">
+											<h5><span class="tsd-flag ts-flagOptional">Optional</span> folder<wbr>Tags<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span></h5>
+											<div class="tsd-comment tsd-typography">
+												<p>Whether to parse sub-folder names as tags if applicable (default: true).</p>
+											</div>
+										</li>
+										<li class="tsd-parameter">
+											<h5><span class="tsd-flag ts-flagOptional">Optional</span> load<wbr>Recursive<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span></h5>
+											<div class="tsd-comment tsd-typography">
+												<p>Whether to load sub-folders of the configuration folder recursively (default: true).</p>
+											</div>
+										</li>
+										<li class="tsd-parameter">
+											<h5><span class="tsd-flag ts-flagOptional">Optional</span> lower<wbr>Case<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span></h5>
+											<div class="tsd-comment tsd-typography">
+												<p>Whether to lower-case environment variables (default: false).</p>
+											</div>
+										</li>
+										<li class="tsd-parameter">
+											<h5><span class="tsd-flag ts-flagOptional">Optional</span> parse<wbr>Argv<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span></h5>
+											<div class="tsd-comment tsd-typography">
+												<p>Whether to parse command line arguments (default: true).</p>
+											</div>
+										</li>
+										<li class="tsd-parameter">
+											<h5><span class="tsd-flag ts-flagOptional">Optional</span> parse<wbr>Env<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span></h5>
+											<div class="tsd-comment tsd-typography">
+												<p>Whether to parse environment variables (default: true).</p>
+											</div>
+										</li>
+										<li class="tsd-parameter">
+											<h5><span class="tsd-flag ts-flagOptional">Optional</span> parse<wbr>Values<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span></h5>
+											<div class="tsd-comment tsd-typography">
+												<p>Attempt to parse well-known values (e.g. &#39;false&#39;, &#39;true&#39;, &#39;null&#39;, &#39;undefined&#39;, &#39;3&#39;, &#39;5.1&#39; and JSON values) into their proper types. If a value cannot be parsed, it will remain a string (default: false).</p>
+											</div>
+										</li>
+										<li class="tsd-parameter">
+											<h5><span class="tsd-flag ts-flagOptional">Optional</span> postfix<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span></h5>
+											<div class="tsd-comment tsd-typography">
+												<p>Seperator for environment variables (default: &#39;json&#39;).</p>
+											</div>
+										</li>
+										<li class="tsd-parameter">
+											<h5><span class="tsd-flag ts-flagOptional">Optional</span> separator<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span></h5>
+											<div class="tsd-comment tsd-typography">
+												<p>Seperator for environment variables (default: &#39;__&#39;).</p>
+											</div>
+										</li>
+										<li class="tsd-parameter">
+											<h5><span class="tsd-flag ts-flagOptional">Optional</span> tag<wbr>Definitions<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Object</span></h5>
+											<div class="tsd-comment tsd-typography">
+												<p>Tag definitions.</p>
+											</div>
+										</li>
+									</ul>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_flex_conf_.flexconf.html" class="tsd-signature-type">FlexConf</a></h4>
@@ -175,17 +237,17 @@
 					<div class="tsd-signature tsd-kind-icon">autoload<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/decentro-gmbh/flex_conf/blob/6038122/lib/flex-conf.ts#L27">flex-conf.ts:27</a></li>
+							<li>Defined in <a href="https://github.com/decentro-gmbh/flex_conf/blob/a35563b/src/flex-conf.ts#L27">flex-conf.ts:27</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="configfiles" class="tsd-anchor"></a>
 					<h3>config<wbr>Files</h3>
-					<div class="tsd-signature tsd-kind-icon">config<wbr>Files<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<div class="tsd-signature tsd-kind-icon">config<wbr>Files<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><a href="_config_file_.configfile.html" class="tsd-signature-type">ConfigFile</a><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/decentro-gmbh/flex_conf/blob/6038122/lib/flex-conf.ts#L32">flex-conf.ts:32</a></li>
+							<li>Defined in <a href="https://github.com/decentro-gmbh/flex_conf/blob/a35563b/src/flex-conf.ts#L32">flex-conf.ts:32</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -195,7 +257,7 @@
 					<div class="tsd-signature tsd-kind-icon">config<wbr>Folder<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/decentro-gmbh/flex_conf/blob/6038122/lib/flex-conf.ts#L21">flex-conf.ts:21</a></li>
+							<li>Defined in <a href="https://github.com/decentro-gmbh/flex_conf/blob/a35563b/src/flex-conf.ts#L21">flex-conf.ts:21</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -205,7 +267,7 @@
 					<div class="tsd-signature tsd-kind-icon">folder<wbr>Tags<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/decentro-gmbh/flex_conf/blob/6038122/lib/flex-conf.ts#L23">flex-conf.ts:23</a></li>
+							<li>Defined in <a href="https://github.com/decentro-gmbh/flex_conf/blob/a35563b/src/flex-conf.ts#L23">flex-conf.ts:23</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -215,7 +277,7 @@
 					<div class="tsd-signature tsd-kind-icon">load<wbr>Recursive<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/decentro-gmbh/flex_conf/blob/6038122/lib/flex-conf.ts#L22">flex-conf.ts:22</a></li>
+							<li>Defined in <a href="https://github.com/decentro-gmbh/flex_conf/blob/a35563b/src/flex-conf.ts#L22">flex-conf.ts:22</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -225,7 +287,7 @@
 					<div class="tsd-signature tsd-kind-icon">lower<wbr>Case<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/decentro-gmbh/flex_conf/blob/6038122/lib/flex-conf.ts#L29">flex-conf.ts:29</a></li>
+							<li>Defined in <a href="https://github.com/decentro-gmbh/flex_conf/blob/a35563b/src/flex-conf.ts#L29">flex-conf.ts:29</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -235,7 +297,7 @@
 					<div class="tsd-signature tsd-kind-icon">parse<wbr>Argv<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/decentro-gmbh/flex_conf/blob/6038122/lib/flex-conf.ts#L25">flex-conf.ts:25</a></li>
+							<li>Defined in <a href="https://github.com/decentro-gmbh/flex_conf/blob/a35563b/src/flex-conf.ts#L25">flex-conf.ts:25</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -245,7 +307,7 @@
 					<div class="tsd-signature tsd-kind-icon">parse<wbr>Env<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/decentro-gmbh/flex_conf/blob/6038122/lib/flex-conf.ts#L26">flex-conf.ts:26</a></li>
+							<li>Defined in <a href="https://github.com/decentro-gmbh/flex_conf/blob/a35563b/src/flex-conf.ts#L26">flex-conf.ts:26</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -255,7 +317,7 @@
 					<div class="tsd-signature tsd-kind-icon">parse<wbr>Values<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/decentro-gmbh/flex_conf/blob/6038122/lib/flex-conf.ts#L30">flex-conf.ts:30</a></li>
+							<li>Defined in <a href="https://github.com/decentro-gmbh/flex_conf/blob/a35563b/src/flex-conf.ts#L30">flex-conf.ts:30</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -265,7 +327,7 @@
 					<div class="tsd-signature tsd-kind-icon">postfix<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/decentro-gmbh/flex_conf/blob/6038122/lib/flex-conf.ts#L24">flex-conf.ts:24</a></li>
+							<li>Defined in <a href="https://github.com/decentro-gmbh/flex_conf/blob/a35563b/src/flex-conf.ts#L24">flex-conf.ts:24</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -275,17 +337,17 @@
 					<div class="tsd-signature tsd-kind-icon">separator<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/decentro-gmbh/flex_conf/blob/6038122/lib/flex-conf.ts#L28">flex-conf.ts:28</a></li>
+							<li>Defined in <a href="https://github.com/decentro-gmbh/flex_conf/blob/a35563b/src/flex-conf.ts#L28">flex-conf.ts:28</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="store" class="tsd-anchor"></a>
 					<h3>store</h3>
-					<div class="tsd-signature tsd-kind-icon">store<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
+					<div class="tsd-signature tsd-kind-icon">store<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Provider</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/decentro-gmbh/flex_conf/blob/6038122/lib/flex-conf.ts#L33">flex-conf.ts:33</a></li>
+							<li>Defined in <a href="https://github.com/decentro-gmbh/flex_conf/blob/a35563b/src/flex-conf.ts#L33">flex-conf.ts:33</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -295,7 +357,7 @@
 					<div class="tsd-signature tsd-kind-icon">tag<wbr>Definitions<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/decentro-gmbh/flex_conf/blob/6038122/lib/flex-conf.ts#L31">flex-conf.ts:31</a></li>
+							<li>Defined in <a href="https://github.com/decentro-gmbh/flex_conf/blob/a35563b/src/flex-conf.ts#L31">flex-conf.ts:31</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -306,13 +368,13 @@
 					<a name="final" class="tsd-anchor"></a>
 					<h3>final</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">final<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+						<li class="tsd-signature tsd-kind-icon">final<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Object</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/decentro-gmbh/flex_conf/blob/6038122/lib/flex-conf.ts#L166">flex-conf.ts:166</a></li>
+									<li>Defined in <a href="https://github.com/decentro-gmbh/flex_conf/blob/a35563b/src/flex-conf.ts#L183">flex-conf.ts:183</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -320,7 +382,7 @@
 									<p>Return a final configuration object.</p>
 								</div>
 							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Object</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -334,7 +396,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/decentro-gmbh/flex_conf/blob/6038122/lib/flex-conf.ts#L95">flex-conf.ts:95</a></li>
+									<li>Defined in <a href="https://github.com/decentro-gmbh/flex_conf/blob/a35563b/src/flex-conf.ts#L106">flex-conf.ts:106</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -350,13 +412,13 @@
 					<a name="savetofile" class="tsd-anchor"></a>
 					<h3>save<wbr>ToFile</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">save<wbr>ToFile<span class="tsd-signature-symbol">(</span>namespace<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+						<li class="tsd-signature tsd-kind-icon">save<wbr>ToFile<span class="tsd-signature-symbol">(</span>namespace<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/decentro-gmbh/flex_conf/blob/6038122/lib/flex-conf.ts#L149">flex-conf.ts:149</a></li>
+									<li>Defined in <a href="https://github.com/decentro-gmbh/flex_conf/blob/a35563b/src/flex-conf.ts#L160">flex-conf.ts:160</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -367,16 +429,51 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>namespace: <span class="tsd-signature-type">any</span></h5>
+									<h5>namespace: <span class="tsd-signature-type">string</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>Config namespace to save to a file.</p>
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> options: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> =&nbsp;{}</span></h5>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> options: <span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> =&nbsp;{}</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Options object.</p>
+									</div>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter">
+											<h5><span class="tsd-flag ts-flagOptional">Optional</span> encoding<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span></h5>
+											<div class="tsd-comment tsd-typography">
+												<p>File encoding, default to &#39;utf8&#39;.</p>
+											</div>
+										</li>
+										<li class="tsd-parameter">
+											<h5><span class="tsd-flag ts-flagOptional">Optional</span> filepath<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span></h5>
+											<div class="tsd-comment tsd-typography">
+												<p>Path to save the config file to, defaults to &#39;[os.tmpdir()]/[namespace].json&#39;.</p>
+											</div>
+										</li>
+										<li class="tsd-parameter">
+											<h5><span class="tsd-flag ts-flagOptional">Optional</span> flag<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span></h5>
+											<div class="tsd-comment tsd-typography">
+												<p>Write operation flags, defaults to &#39;w&#39;.</p>
+											</div>
+										</li>
+										<li class="tsd-parameter">
+											<h5><span class="tsd-flag ts-flagOptional">Optional</span> mode<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span></h5>
+											<div class="tsd-comment tsd-typography">
+												<p>File permissions, default to read-only for the owner (0o600).</p>
+											</div>
+										</li>
+										<li class="tsd-parameter">
+											<h5><span class="tsd-flag ts-flagOptional">Optional</span> space<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
+											<div class="tsd-comment tsd-typography">
+												<p>A String or Number object that&#39;s used to insert white space into the output JSON string for readability purposes.</p>
+											</div>
+										</li>
+									</ul>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
 							<p>Path of the saved config file.</p>
 						</li>
 					</ul>

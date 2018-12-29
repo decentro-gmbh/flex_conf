@@ -14,7 +14,7 @@
     "test": "jest --config test/jest.config.json",
     "debug": "node --inspect=0.0.0.0 --inspect-brk example/example.js",
     "start": "npm run build && node example/example.js",
-    "gen-doc": "typedoc --hideGenerator --includes src/ --out doc/"
+    "gen-doc": "typedoc --hideGenerator --tsconfig src/tsconfig.json --out docs/ src/"
   },
   "prepublishOnly": "npm run build",
   "repository": {
