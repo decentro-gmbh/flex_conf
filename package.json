@@ -4,12 +4,16 @@
   "description": "Flexible, tag-based configuration file management.",
   "main": "dist/flex-conf.js",
   "types": "dist/flex-conf.d.ts",
-  "files": ["dist/*"],
+  "files": [
+    "dist/*",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
     "build": "tsc",
     "debug": "node --inspect=0.0.0.0 --inspect-brk example/example.js",
     "start": "npm run build && node example/example.js",
-    "gen-doc": "jsdoc2md lib/flex-conf.js lib/tag-definition.js"
+    "gen-doc": "typedoc --hideGenerator --includes lib/ --out doc/"
   },
   "prepublishOnly": "npm run build",
   "repository": {
@@ -32,7 +36,8 @@
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsdoc": "^3.8.0",
-    "jsdoc-to-markdown": "^4.0.1",
+    "jest": "^23.6.0",
+    "typedoc": "^0.13.0",
     "typescript": "^3.2.2"
   }
 }
