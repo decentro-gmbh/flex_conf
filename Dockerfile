@@ -11,6 +11,9 @@ FROM node:10.14-stretch
 LABEL maintainer="Benjamin Assadsolimani"
 WORKDIR /app
 
+# Mark container as development container by setting NODE_ENV to 'development'
+ENV NODE_ENV='development'
+
 # Add bin folder of node_modules to PATH
 ENV PATH="/app/node_modules/.bin:${PATH}"
 
