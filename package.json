@@ -2,21 +2,26 @@
   "name": "flex_conf",
   "version": "2.0.0",
   "description": "Flexible, tag-based configuration file management.",
-  "main": "index.js",
+  "main": "dist/flex-conf.js",
+  "types": "dist/flex-conf.d.ts",
+  "files": ["dist/*"],
   "scripts": {
-    "start": "node example/example.js",
+    "build": "tsc",
+    "debug": "node --inspect=0.0.0.0 --inspect-brk example/example.js",
+    "start": "npm run build && node example/example.js",
     "gen-doc": "jsdoc2md lib/flex-conf.js lib/tag-definition.js"
   },
+  "prepublishOnly": "npm run build",
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@bitbucket.org/derbenoo/flex_conf.git"
+    "url": "git@github.com:decentro-gmbh/flex_conf.git"
   },
   "keywords": [
     "config"
   ],
   "author": "Decentro GmbH",
-  "license": "ISC",
-  "homepage": "https://bitbucket.org/derbenoo/flex_conf#readme",
+  "license": "MIT",
+  "homepage": "https://github.com/decentro-gmbh/flex_conf/blob/master/README.md",
   "dependencies": {
     "debug": "^4.1.0",
     "nconf": "~0.10.0"
