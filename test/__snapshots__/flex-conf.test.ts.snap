@@ -1,6 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Correct loading of a specific configuration file Tag-based configuration file loading 1`] = `
+exports[`Correct loading of configuration files Hierarchical, score-based loading of configuration files 1`] = `
+Object {
+  "attr1": "tag1-val2.tag2-val2.attr1",
+  "attr2": "tag1-val2.tag2-val2.attr2",
+  "obj1": Object {
+    "attr3": "tag1-val2.tag2-val2.attr3",
+  },
+}
+`;
+
+exports[`Correct loading of configuration files Tag-based configuration file loading 1`] = `
 Object {
   "attr1": "tag1-val1.tag2-val1.attr1",
   "attr2": "tag1-val1.tag2-val1.attr2",
@@ -10,7 +20,7 @@ Object {
 }
 `;
 
-exports[`Correct loading of a specific configuration file Tag-based configuration file loading 2`] = `
+exports[`Correct loading of configuration files Tag-based configuration file loading 2`] = `
 Object {
   "attr1": "tag1-val1.tag2-val2.attr1",
   "attr2": "tag1-val1.tag2-val2.attr2",
@@ -20,7 +30,7 @@ Object {
 }
 `;
 
-exports[`Correct loading of a specific configuration file Tag-based configuration file loading 3`] = `
+exports[`Correct loading of configuration files Tag-based configuration file loading 3`] = `
 Object {
   "attr1": "tag2-val1.tag1-val2.attr1",
   "attr2": "tag2-val1.tag1-val2.attr2",
@@ -30,7 +40,7 @@ Object {
 }
 `;
 
-exports[`Correct loading of a specific configuration file Tag-based configuration file loading 4`] = `
+exports[`Correct loading of configuration files Tag-based configuration file loading 4`] = `
 Object {
   "attr1": "tag1-val2.tag2-val2.attr1",
   "attr2": "tag1-val2.tag2-val2.attr2",
