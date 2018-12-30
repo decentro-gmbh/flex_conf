@@ -15,7 +15,7 @@ import * as path from 'path';
 export class ConfigFile {
   filepath: string;
   configFolder: string;
-  folderTags: Array<any>;
+  folderTags: boolean;
   tagDefinitions: any;
   tagSeparator: string;
   keyValSeparator: string;
@@ -24,15 +24,21 @@ export class ConfigFile {
 
   /**
    * Create a new configuration file.
-   * @param {string} filepath - Path to the configuration file.
-   * @param {Object} options - Options object.
-   * @param {string} [options.configFolder=null] - Configuration files folder.
-   * @param {boolean} [options.folderTags=true] - Whether to parse sub-folder names as tags if applicable.
-   * @param {Object} [options.tagDefinitions={}] - Tag definitions.
-   * @param {string} [options.tagSeparator='.'] - Seperation character for tags inside the filename.
-   * @param {string} [options.keyValSeparator='-'] - Seperation character for a tag's key and value.
+   * @param filepath - Path to the configuration file.
+   * @param options - Options object.
+   * @param options.configFolder - Configuration files folder.
+   * @param options.folderTags - Whether to parse sub-folder names as tags if applicable (default: true).
+   * @param options.tagDefinitions - Tag definitions.
+   * @param options.tagSeparator - Seperation character for tags inside the filename (default: '.').
+   * @param options.keyValSeparator - Seperation character for a tag's key and value (default: '-').
    */
-  constructor(filepath, options: any = {}) {
+  constructor(filepath: string, options: {
+    configFolder?: string,
+    folderTags?: boolean,
+    tagDefinitions?: Object,
+    tagSeparator?: string,
+    keyValSeparator?: string
+  } = {}) {
     this.filepath = filepath;
     this.configFolder = options.configFolder;
     this.folderTags = options.folderTags;
@@ -47,13 +53,13 @@ export class ConfigFile {
     this.namespace = null;
   }
 
-  get filename() { return path.basename(this.filepath); }
+  get filename(): string { return path.basename(this.filepath); }
 
-  get numTags() { return Object.keys(this.tags).length; }
+  get numTags(): number { return Object.keys(this.tags).length; }
 
-  toString() { return `<${this.score}> ${this.filepath}`; }
+  toString(): string { return `<${this.score}> ${this.filepath}`; }
 
-  get score() {
+  get score(): number {
     let score = 0;
     Object.keys(this.tags).forEach((key) => {
       const value = this.tags[key];
@@ -65,10 +71,10 @@ export class ConfigFile {
   /**
    * Get an array of folder names of the config file's path. Treat the config folder as the root folder such that only folders will
    * be listed that are sub-folders of the root config folder.
-   * @param {string} configFolder - Config folder path.
-   * @returns {Array<string>} Array of folder names.
+   * @param configFolder - Config folder path.
+   * @returns Array of folder names.
    */
-  getFolders(configFolder) {
+  getFolders(configFolder: string): Array<string> {
     return path.dirname(this.filepath)
       .substr(configFolder.length + 1)
       .split(path.sep)
@@ -77,9 +83,9 @@ export class ConfigFile {
 
   /**
    * Process the path and filename of the configuration file regarding to the contained tags.
-   * @param {Object} tagDefinitions - An object containing all tag definitions that should be considered.
+   * @param tagDefinitions - An object containing all tag definitions that should be considered.
    */
-  processFilepath(tagDefinitions) {
+  processFilepath(tagDefinitions: Object) {
     const filetags = this.filename.split(this.tagSeparator);
     // Remove the file ending as this is not a tag
     filetags.pop();
@@ -105,7 +111,7 @@ export class ConfigFile {
   /**
    * Load the JSON object contained by the configuration file.
    */
-  loadJson() {
+  loadJson(): Object {
     try {
       const data = fs.readFileSync(this.filepath, 'utf8');
       try {
