@@ -1,0 +1,7 @@
+{
+  "attr1": "tag1-val1.tag2-val2.attr1",
+  "attr2": "tag1-val1.tag2-val2.attr2",
+  "obj1": {
+    "attr3": "tag1-val1.tag2-val2.attr3"
+  } 
+}
