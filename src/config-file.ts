@@ -8,6 +8,15 @@
 import * as debug from 'debug';
 import * as fs from 'fs';
 import * as path from 'path';
+import { TagDefinition } from './tag-definition';
+
+export interface IConfigFileOptions {
+  configFolder?: string;
+  folderTags?: boolean;
+  tagDefinitions?: {[key: string]: TagDefinition};
+  tagSeparator?: string;
+  keyValSeparator?: string;
+}
 
 /**
  * Configuration file class, representing a single configuration file inside the configuration folder or one of its sub-folders.
@@ -16,7 +25,7 @@ export class ConfigFile {
   filepath: string;
   configFolder: string;
   folderTags: boolean;
-  tagDefinitions: any;
+  tagDefinitions: {[key: string]: TagDefinition};
   tagSeparator: string;
   keyValSeparator: string;
   tags: any;
@@ -32,17 +41,11 @@ export class ConfigFile {
    * @param options.tagSeparator - Seperation character for tags inside the filename (default: '.').
    * @param options.keyValSeparator - Seperation character for a tag's key and value (default: '-').
    */
-  constructor(filepath: string, options: {
-    configFolder?: string,
-    folderTags?: boolean,
-    tagDefinitions?: Object,
-    tagSeparator?: string,
-    keyValSeparator?: string
-  } = {}) {
+  constructor(filepath: string, configFolder: string, options: IConfigFileOptions = {}) {
     this.filepath = filepath;
-    this.configFolder = options.configFolder;
-    this.folderTags = options.folderTags;
+    this.configFolder = configFolder;
     this.tagDefinitions = options.tagDefinitions || {};
+    this.folderTags = options.folderTags;
 
     // Options
     this.tagSeparator = options.tagSeparator || '.';
@@ -71,21 +74,19 @@ export class ConfigFile {
   /**
    * Get an array of folder names of the config file's path. Treat the config folder as the root folder such that only folders will
    * be listed that are sub-folders of the root config folder.
-   * @param configFolder - Config folder path.
    * @returns Array of folder names.
    */
-  getFolders(configFolder: string): Array<string> {
+  getFolders(): Array<string> {
     return path.dirname(this.filepath)
-      .substr(configFolder.length + 1)
+      .substr(this.configFolder.length + 1)
       .split(path.sep)
       .filter(d => d.length > 0);
   }
 
   /**
    * Process the path and filename of the configuration file regarding to the contained tags.
-   * @param tagDefinitions - An object containing all tag definitions that should be considered.
    */
-  processFilepath(tagDefinitions: Object) {
+  processFilepath() {
     const filetags = this.filename.split(this.tagSeparator);
     // Remove the file ending as this is not a tag
     filetags.pop();
@@ -93,16 +94,16 @@ export class ConfigFile {
     this.namespace = filetags.shift();
 
     if (this.folderTags && this.configFolder) {
-      // Each folder within the config directory is treated a filetag
-      const folders = this.getFolders(this.configFolder);
+      // Each folder within the config directory is treated as a filetag
+      const folders = this.getFolders();
       filetags.push(...folders);
     }
 
     filetags.forEach((filetag) => {
       const [key] = filetag.split(this.keyValSeparator);
       const value = filetag.substr(key.length + this.keyValSeparator.length);
-      if (tagDefinitions[key]) {
-        this.tags[key] = tagDefinitions[key].map(value);
+      if (this.tagDefinitions[key]) {
+        this.tags[key] = this.tagDefinitions[key].map(value);
         debug(`Extracted tag: <${key} : ${value} => ${this.tags[key]}> from filetag ${filetag}`);
       }
     });

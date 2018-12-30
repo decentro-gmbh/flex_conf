@@ -14,51 +14,54 @@ import { ConfigFile } from './config-file';
 import { TagDefinition } from './tag-definition';
 import { getFilesFromDir } from './utils';
 
+export interface IFlexConfOptions {
+  /** Tag definitions */
+  tagDefinitions?: Object;
+  /** Whether to load sub-folders of the configuration folder recursively (default: true) */
+  loadRecursive?: boolean;
+  /** Whether to parse sub-folder names as tags if applicable (default: true) */
+  folderTags?: boolean;
+  /** Whether to parse command line arguments (default: true) */
+  parseArgv?: boolean;
+  /** Whether to parse environment variables (default: true) */
+  parseEnv?: boolean;
+  /** Seperator for environment variables (default: '__') */
+  separator?: string;
+  /** Seperator for environment variables (default: 'json') */
+  postfix?: string;
+  /** Whether to lower-case environment variables (default: false) */
+  lowerCase?: boolean;
+  /** Attempt to parse well-known values (e.g. 'false', 'true', 'null', 'undefined', '3', '5.1' and JSON values) into their proper types. If a value cannot be parsed, it will remain a string (default: false) */
+  parseValues?: boolean;
+  /** Whether to automatically load all configuration files on instantiation (default: true) */
+  autoload?: boolean;
+}
+
 /**
  * FlexConf class, representing the entire config of the config folder
  */
 export class FlexConf {
-  configFolder: string;
-  loadRecursive: boolean;
-  folderTags: boolean;
-  postfix: string;
-  parseArgv: boolean;
-  parseEnv: boolean;
-  autoload: boolean;
-  separator: string;
-  lowerCase: boolean;
-  parseValues: boolean;
-  tagDefinitions: Object;
-  configFiles: Array<ConfigFile>;
-  store: nconf.Provider;
+  public configFiles: Array<ConfigFile>;
+  public store: nconf.Provider;
+
+  private configFolder: string;
+  private loadRecursive: boolean;
+  private folderTags: boolean;
+  private postfix: string;
+  private parseArgv: boolean;
+  private parseEnv: boolean;
+  private autoload: boolean;
+  private separator: string;
+  private lowerCase: boolean;
+  private parseValues: boolean;
+  private tagDefinitions: { [key: string]: TagDefinition};
 
   /**
    * Create a new configuration instance.
    * @param configFolder - Path to the folder that holds all configuration files.
-   * @param options - Configuration options.
-   * @param options.tagDefinitions - Tag definitions.
-   * @param options.loadRecursive - Whether to load sub-folders of the configuration folder recursively (default: true).
-   * @param options.folderTags - Whether to parse sub-folder names as tags if applicable (default: true).
-   * @param options.parseArgv - Whether to parse command line arguments (default: true).
-   * @param options.parseEnv - Whether to parse environment variables (default: true).
-   * @param options.separator - Seperator for environment variables (default: '__').
-   * @param options.postfix - Seperator for environment variables (default: 'json').
-   * @param options.lowerCase - Whether to lower-case environment variables (default: false).
-   * @param options.parseValues - Attempt to parse well-known values (e.g. 'false', 'true', 'null', 'undefined', '3', '5.1' and JSON values) into their proper types. If a value cannot be parsed, it will remain a string (default: false).
-   * @param options.autoload - Whether to automatically load all configuration files on instantiation (default: true).
+   * @param options - FlexConf configuration options.
    */
-  constructor(configFolder: string, options: {
-    tagDefinitions?: Object,
-    loadRecursive?: boolean,
-    folderTags?: boolean,
-    parseArgv?: boolean,
-    parseEnv?: boolean,
-    separator?: string,
-    postfix?: string,
-    lowerCase?: boolean,
-    parseValues?: boolean,
-    autoload?: boolean
-  } = {}) {
+  constructor(configFolder: string, options: IFlexConfOptions = {}) {
     // Filesystem options
     this.configFolder = configFolder;
     this.loadRecursive = options.loadRecursive !== undefined ? options.loadRecursive : true;
@@ -107,14 +110,13 @@ export class FlexConf {
     // Get all config files
     const filenames = getFilesFromDir(this.configFolder, this.postfix, this.loadRecursive);
     filenames.forEach((filename) => {
-      const configFile = new ConfigFile(filename, {
+      const configFile = new ConfigFile(filename, this.configFolder, {
         tagDefinitions: this.tagDefinitions,
-        configFolder: this.configFolder,
         folderTags: this.folderTags,
       });
 
       debug(`Processing config file: ${configFile.toString()}`);
-      configFile.processFilepath(this.tagDefinitions);
+      configFile.processFilepath();
       this.configFiles.push(configFile);
     });
 
@@ -180,7 +182,7 @@ export class FlexConf {
   /**
    * Return a final configuration object.
    */
-  final(): Object {
+  final(): any {
     return this.store.get();
   }
 }
