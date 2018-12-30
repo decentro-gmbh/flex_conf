@@ -2,7 +2,7 @@
   "compileOnSave": false,
   "compilerOptions": {
     "module": "commonjs",
-    "target": "es2017",
+    "target": "ES5",
     "alwaysStrict": true,
     "outDir": "../dist",
     "baseUrl": "./",
@@ -16,7 +16,7 @@
       "./../node_modules/@types"
     ],
     "lib": [
-      "es2017"
+      "es5"
     ],
     "noImplicitReturns": true,
     "noUnusedLocals": true,
