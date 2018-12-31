@@ -133,13 +133,13 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Config<wbr>File<span class="tsd-signature-symbol">(</span>filepath<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_config_file_.configfile.html" class="tsd-signature-type">ConfigFile</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Config<wbr>File<span class="tsd-signature-symbol">(</span>filepath<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, configFolder<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, options<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_config_file_.iconfigfileoptions.html" class="tsd-signature-type">IConfigFileOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_config_file_.configfile.html" class="tsd-signature-type">ConfigFile</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/decentro-gmbh/flex_conf/blob/c8b33d7/src/config-file.ts#L24">config-file.ts:24</a></li>
+									<li>Defined in <a href="https://github.com/decentro-gmbh/flex_conf/blob/0fcc4fb/src/config-file.ts#L35">config-file.ts:35</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -158,10 +158,18 @@
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> options: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> =&nbsp;{}</span></h5>
+									<h5>configFolder: <span class="tsd-signature-type">string</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<div class="lead">
-											<p>Options object.</p>
+											<p>Configuration files folder.</p>
+										</div>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> options: <a href="../interfaces/_config_file_.iconfigfileoptions.html" class="tsd-signature-type">IConfigFileOptions</a><span class="tsd-signature-symbol"> =&nbsp;{}</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>ConfigFile constructor options object.</p>
 										</div>
 									</div>
 								</li>
@@ -179,7 +187,7 @@
 					<div class="tsd-signature tsd-kind-icon">config<wbr>Folder<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/decentro-gmbh/flex_conf/blob/c8b33d7/src/config-file.ts#L18">config-file.ts:18</a></li>
+							<li>Defined in <a href="https://github.com/decentro-gmbh/flex_conf/blob/0fcc4fb/src/config-file.ts#L29">config-file.ts:29</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -189,7 +197,7 @@
 					<div class="tsd-signature tsd-kind-icon">filepath<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/decentro-gmbh/flex_conf/blob/c8b33d7/src/config-file.ts#L17">config-file.ts:17</a></li>
+							<li>Defined in <a href="https://github.com/decentro-gmbh/flex_conf/blob/0fcc4fb/src/config-file.ts#L28">config-file.ts:28</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -199,7 +207,7 @@
 					<div class="tsd-signature tsd-kind-icon">folder<wbr>Tags<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/decentro-gmbh/flex_conf/blob/c8b33d7/src/config-file.ts#L19">config-file.ts:19</a></li>
+							<li>Defined in <a href="https://github.com/decentro-gmbh/flex_conf/blob/0fcc4fb/src/config-file.ts#L30">config-file.ts:30</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -209,7 +217,7 @@
 					<div class="tsd-signature tsd-kind-icon">key<wbr>Val<wbr>Separator<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/decentro-gmbh/flex_conf/blob/c8b33d7/src/config-file.ts#L22">config-file.ts:22</a></li>
+							<li>Defined in <a href="https://github.com/decentro-gmbh/flex_conf/blob/0fcc4fb/src/config-file.ts#L33">config-file.ts:33</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -219,7 +227,7 @@
 					<div class="tsd-signature tsd-kind-icon">namespace<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/decentro-gmbh/flex_conf/blob/c8b33d7/src/config-file.ts#L24">config-file.ts:24</a></li>
+							<li>Defined in <a href="https://github.com/decentro-gmbh/flex_conf/blob/0fcc4fb/src/config-file.ts#L35">config-file.ts:35</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -229,7 +237,7 @@
 					<div class="tsd-signature tsd-kind-icon">tag<wbr>Definitions<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/decentro-gmbh/flex_conf/blob/c8b33d7/src/config-file.ts#L20">config-file.ts:20</a></li>
+							<li>Defined in <a href="https://github.com/decentro-gmbh/flex_conf/blob/0fcc4fb/src/config-file.ts#L31">config-file.ts:31</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -247,7 +255,7 @@
 					<div class="tsd-signature tsd-kind-icon">tag<wbr>Separator<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/decentro-gmbh/flex_conf/blob/c8b33d7/src/config-file.ts#L21">config-file.ts:21</a></li>
+							<li>Defined in <a href="https://github.com/decentro-gmbh/flex_conf/blob/0fcc4fb/src/config-file.ts#L32">config-file.ts:32</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -257,7 +265,7 @@
 					<div class="tsd-signature tsd-kind-icon">tags<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/decentro-gmbh/flex_conf/blob/c8b33d7/src/config-file.ts#L23">config-file.ts:23</a></li>
+							<li>Defined in <a href="https://github.com/decentro-gmbh/flex_conf/blob/0fcc4fb/src/config-file.ts#L34">config-file.ts:34</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -274,7 +282,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/decentro-gmbh/flex_conf/blob/c8b33d7/src/config-file.ts#L51">config-file.ts:51</a></li>
+									<li>Defined in <a href="https://github.com/decentro-gmbh/flex_conf/blob/0fcc4fb/src/config-file.ts#L58">config-file.ts:58</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -291,7 +299,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/decentro-gmbh/flex_conf/blob/c8b33d7/src/config-file.ts#L53">config-file.ts:53</a></li>
+									<li>Defined in <a href="https://github.com/decentro-gmbh/flex_conf/blob/0fcc4fb/src/config-file.ts#L60">config-file.ts:60</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
@@ -308,7 +316,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/decentro-gmbh/flex_conf/blob/c8b33d7/src/config-file.ts#L57">config-file.ts:57</a></li>
+									<li>Defined in <a href="https://github.com/decentro-gmbh/flex_conf/blob/0fcc4fb/src/config-file.ts#L64">config-file.ts:64</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
@@ -322,13 +330,13 @@
 					<a name="getfolders" class="tsd-anchor"></a>
 					<h3>get<wbr>Folders</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Folders<span class="tsd-signature-symbol">(</span>configFolder<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Folders<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/decentro-gmbh/flex_conf/blob/c8b33d7/src/config-file.ts#L72">config-file.ts:72</a></li>
+									<li>Defined in <a href="https://github.com/decentro-gmbh/flex_conf/blob/0fcc4fb/src/config-file.ts#L78">config-file.ts:78</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -337,15 +345,6 @@
 									be listed that are sub-folders of the root config folder.</p>
 								</div>
 							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>configFolder: <span class="tsd-signature-type">string</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>Config folder path.</p>
-									</div>
-								</li>
-							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>Array of folder names.</p>
 						</li>
@@ -361,7 +360,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/decentro-gmbh/flex_conf/blob/c8b33d7/src/config-file.ts#L109">config-file.ts:109</a></li>
+									<li>Defined in <a href="https://github.com/decentro-gmbh/flex_conf/blob/0fcc4fb/src/config-file.ts#L114">config-file.ts:114</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -377,13 +376,13 @@
 					<a name="processfilepath" class="tsd-anchor"></a>
 					<h3>process<wbr>Filepath</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">process<wbr>Filepath<span class="tsd-signature-symbol">(</span>tagDefinitions<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Object</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">process<wbr>Filepath<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/decentro-gmbh/flex_conf/blob/c8b33d7/src/config-file.ts#L83">config-file.ts:83</a></li>
+									<li>Defined in <a href="https://github.com/decentro-gmbh/flex_conf/blob/0fcc4fb/src/config-file.ts#L88">config-file.ts:88</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -391,15 +390,6 @@
 									<p>Process the path and filename of the configuration file regarding to the contained tags.</p>
 								</div>
 							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>tagDefinitions: <span class="tsd-signature-type">Object</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>An object containing all tag definitions that should be considered.</p>
-									</div>
-								</li>
-							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
@@ -414,7 +404,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/decentro-gmbh/flex_conf/blob/c8b33d7/src/config-file.ts#L55">config-file.ts:55</a></li>
+									<li>Defined in <a href="https://github.com/decentro-gmbh/flex_conf/blob/0fcc4fb/src/config-file.ts#L62">config-file.ts:62</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
@@ -502,6 +492,9 @@
 					</li>
 				</ul>
 				<ul class="after-current">
+					<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+						<a href="../interfaces/_config_file_.iconfigfileoptions.html" class="tsd-kind-icon">IConfig<wbr>File<wbr>Options</a>
+					</li>
 				</ul>
 			</nav>
 		</div>
