@@ -164,7 +164,7 @@ export class FlexConf {
     space?: string|number,
     encoding?: string
     flag?: string
-    mode?: number
+    mode?: number,
   } = {}): string {
     const configObject = this.store.get(namespace);
     if (!options.filepath) {

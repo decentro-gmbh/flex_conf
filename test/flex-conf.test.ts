@@ -15,12 +15,12 @@ describe('Correct loading of configuration files', () => {
         folderTags: true,
         tagDefinitions: {
           tag1: {
-            applies: val => val === `val${tag1}`
+            applies: val => val === `val${tag1}`,
           },
           tag2: {
-            applies: val => val === `val${tag2}`
-          }
-        }
+            applies: val => val === `val${tag2}`,
+          },
+        },
         });
 
         // Get the final config object
@@ -43,8 +43,8 @@ describe('Correct loading of configuration files', () => {
       tag2: {
         applies: () => true,
         score: (value) => value === 'val1' ? 8 : 16,
-      }
-    }
+      },
+    },
     });
 
     // Check if the score of each config file was computed correctly

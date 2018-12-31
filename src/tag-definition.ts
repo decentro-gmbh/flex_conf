@@ -23,7 +23,7 @@ export class TagDefinition {
   constructor(name: string, options: {
     applies?: Function,
     map?: Function,
-    score?: Function
+    score?: Function,
   } = {}) {
     this.name = name;
     this.applies = options.applies || function () { return false; };

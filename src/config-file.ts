@@ -11,10 +11,13 @@ import * as path from 'path';
 import { TagDefinition } from './tag-definition';
 
 export interface IConfigFileOptions {
-  configFolder?: string;
+  /** Whether to parse sub-folder names as tags if applicable (default: true) */
   folderTags?: boolean;
+  /** Tag definitions */
   tagDefinitions?: {[key: string]: TagDefinition};
+  /** Seperation character for tags inside the filename (default: '.') */
   tagSeparator?: string;
+  /** Seperation character for a tag's key and value (default: '-') */
   keyValSeparator?: string;
 }
 
@@ -34,12 +37,8 @@ export class ConfigFile {
   /**
    * Create a new configuration file.
    * @param filepath - Path to the configuration file.
-   * @param options - Options object.
-   * @param options.configFolder - Configuration files folder.
-   * @param options.folderTags - Whether to parse sub-folder names as tags if applicable (default: true).
-   * @param options.tagDefinitions - Tag definitions.
-   * @param options.tagSeparator - Seperation character for tags inside the filename (default: '.').
-   * @param options.keyValSeparator - Seperation character for a tag's key and value (default: '-').
+   * @param configFolder - Configuration files folder.
+   * @param options - ConfigFile constructor options object.
    */
   constructor(filepath: string, configFolder: string, options: IConfigFileOptions = {}) {
     this.filepath = filepath;
@@ -86,7 +85,7 @@ export class ConfigFile {
   /**
    * Process the path and filename of the configuration file regarding to the contained tags.
    */
-  processFilepath() {
+  processFilepath(): void {
     const filetags = this.filename.split(this.tagSeparator);
     // Remove the file ending as this is not a tag
     filetags.pop();
