@@ -1,6 +1,6 @@
 {
   "name": "flex_conf",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Flexible, tag-based configuration file management.",
   "main": "dist/flex-conf.js",
   "types": "dist/flex-conf.d.ts",
