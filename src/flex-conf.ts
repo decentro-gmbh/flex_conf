@@ -54,7 +54,7 @@ export class FlexConf {
   private separator: string;
   private lowerCase: boolean;
   private parseValues: boolean;
-  private tagDefinitions: { [key: string]: TagDefinition};
+  private tagDefinitions: { [key: string]: TagDefinition };
 
   /**
    * Create a new configuration instance.
@@ -161,7 +161,7 @@ export class FlexConf {
    */
   saveToFile(namespace: string, options: {
     filepath?: string,
-    space?: string|number,
+    space?: string | number,
     encoding?: string
     flag?: string
     mode?: number,

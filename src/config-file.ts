@@ -14,7 +14,7 @@ export interface IConfigFileOptions {
   /** Whether to parse sub-folder names as tags if applicable (default: true) */
   folderTags?: boolean;
   /** Tag definitions */
-  tagDefinitions?: {[key: string]: TagDefinition};
+  tagDefinitions?: { [key: string]: TagDefinition };
   /** Seperation character for tags inside the filename (default: '.') */
   tagSeparator?: string;
   /** Seperation character for a tag's key and value (default: '-') */
@@ -28,7 +28,7 @@ export class ConfigFile {
   filepath: string;
   configFolder: string;
   folderTags: boolean;
-  tagDefinitions: {[key: string]: TagDefinition};
+  tagDefinitions: { [key: string]: TagDefinition };
   tagSeparator: string;
   keyValSeparator: string;
   tags: any;

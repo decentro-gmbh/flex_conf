@@ -5,6 +5,7 @@
   "main": "dist/flex-conf.js",
   "types": "dist/flex-conf.d.ts",
   "files": [
+    "src/*",
     "dist/*",
     "README.md",
     "LICENSE"
@@ -12,8 +13,8 @@
   "scripts": {
     "build": "tsc -p src/",
     "test": "jest --config test/jest.config.json",
-    "debug": "node --inspect=0.0.0.0 --inspect-brk example/example.js",
-    "start": "npm run build && node example/example.js",
+    "debug": "TS_NODE_PROJECT=src/tsconfig.json TS_NODE_FILE=true node -r ts-node/register --inspect=0.0.0.0 --inspect-brk example/example.ts",
+    "start": "ts-node --project src/tsconfig.json example/example.ts",
     "gen-doc": "typedoc --hideGenerator --tsconfig src/tsconfig.json --out docs/ src/"
   },
   "prepublishOnly": "npm run build",
@@ -26,6 +27,9 @@
   ],
   "author": "Decentro GmbH",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/decentro-gmbh/flex_conf/issues"
+  },
   "homepage": "https://decentro-gmbh.github.io/flex_conf",
   "dependencies": {
     "debug": "^4.1.0",
@@ -37,6 +41,7 @@
     "@types/node": "^10.12.18",
     "jest": "^23.6.0",
     "ts-jest": "^23.10.5",
+    "ts-node": "^7.0.1",
     "tslint": "^5.12.0",
     "typedoc": "^0.13.0",
     "typescript": "^3.2.2"

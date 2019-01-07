@@ -5,8 +5,8 @@
 
 'use strict';
 
-const path = require('path');
-const { FlexConf } = require('../dist/flex-conf');
+import * as path from 'path';
+import { FlexConf } from '../dist/flex-conf';
 
 const conf = new FlexConf(path.join(__dirname, 'configs'), {
   tagDefinitions: {
@@ -28,4 +28,4 @@ const filepath = conf.saveToFile('database', { space: 2 });
 
 console.log(`Saved 'database' namespace configuration file: ${filepath}`);
 
-module.exports = conf.final();
+export default conf.final();
