@@ -8,9 +8,9 @@
 export class TagDefinition {
   /** Name of the tag */
   name: string;
-  applies: Function;
-  map: Function;
-  score: Function;
+  applies: (val: string) => boolean;
+  map: (val: string) => any;
+  score: (val: string) => number;
 
   /**
    * Create a new TagDefinition instance.
@@ -21,13 +21,13 @@ export class TagDefinition {
    * @param options.score - Function to compute a score value for the tag.
    */
   constructor(name: string, options: {
-    applies?: Function,
-    map?: Function,
-    score?: Function,
+    applies?: (val: string) => boolean,
+    map?: (val: string) => any,
+    score?: (val: string) => number,
   } = {}) {
     this.name = name;
-    this.applies = options.applies || function () { return false; };
-    this.map = options.map || function (val) { return val; };
-    this.score = options.score || function () { return 1; };
+    this.applies = options.applies || function() { return false; };
+    this.map = options.map || function(val) { return val; };
+    this.score = options.score || function() { return 1; };
   }
 }

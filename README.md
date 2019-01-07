@@ -2,7 +2,7 @@
 
 [![](https://img.shields.io/badge/TypeScript-v3-blue.svg?style=flat)](https://github.com/decentro-gmbh/flex_conf/blob/master/package.json
 ) [![](https://img.shields.io/npm/v/flex_conf.svg)](https://www.npmjs.com/package/flex_conf
-) [![](https://img.shields.io/snyk/vulnerabilities/npm/flex_conf.svg)](https://www.npmjs.com/package/flex_conf
+) [![](https://img.shields.io/snyk/vulnerabilities/npm/flex_conf.svg)](https://snyk.io/test/npm/flex_conf
 ) [![](https://img.shields.io/github/license/decentro-gmbh/flex_conf.svg?style=flat)](https://github.com/decentro-gmbh/flex_conf/blob/master/LICENSE)
 
 Flexible configuration file management.

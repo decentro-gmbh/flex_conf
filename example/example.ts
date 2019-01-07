@@ -6,6 +6,7 @@
 import config from './config';
 
 function connect() {
+  // tslint:disable-next-line:no-console
   console.log(`Connection to database '${config.database.username}@${config.database.host}:${config.database.port}'`);
 }
 

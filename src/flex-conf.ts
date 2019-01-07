@@ -6,17 +6,17 @@
 'use strict';
 
 import * as debug from 'debug';
-import * as os from 'os';
 import * as fs from 'fs';
-import * as path from 'path';
 import * as nconf from 'nconf';
+import * as os from 'os';
+import * as path from 'path';
 import { ConfigFile } from './config-file';
 import { TagDefinition } from './tag-definition';
 import { getFilesFromDir } from './utils';
 
 export interface IFlexConfOptions {
   /** Tag definitions */
-  tagDefinitions?: Object;
+  tagDefinitions?: object;
   /** Whether to load sub-folders of the configuration folder recursively (default: true) */
   loadRecursive?: boolean;
   /** Whether to parse sub-folder names as tags if applicable (default: true) */
@@ -31,7 +31,7 @@ export interface IFlexConfOptions {
   postfix?: string;
   /** Whether to lower-case environment variables (default: false) */
   lowerCase?: boolean;
-  /** Attempt to parse well-known values (e.g. 'false', 'true', 'null', 'undefined', '3', '5.1' and JSON values) into their proper types. If a value cannot be parsed, it will remain a string (default: false) */
+  /** Attempt to parse well-known values (e.g. 'false', 'true', 'null', 'undefined', '3', '5.1' and JSON values) into their proper types (default: false) */
   parseValues?: boolean;
   /** Whether to automatically load all configuration files on instantiation (default: true) */
   autoload?: boolean;
@@ -41,7 +41,7 @@ export interface IFlexConfOptions {
  * FlexConf class, representing the entire config of the config folder
  */
 export class FlexConf {
-  public configFiles: Array<ConfigFile>;
+  public configFiles: ConfigFile[];
   public store: nconf.Provider;
 
   private configFolder: string;

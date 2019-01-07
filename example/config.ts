@@ -11,7 +11,7 @@ import { FlexConf } from '../dist/flex-conf';
 const conf = new FlexConf(path.join(__dirname, 'configs'), {
   tagDefinitions: {
     env: {
-      applies: value => process.env.NODE_ENV === value,
+      applies: (value) => process.env.NODE_ENV === value,
       map: (value) => {
         switch (value) {
           case 'dev': return 'development';
@@ -26,6 +26,7 @@ const conf = new FlexConf(path.join(__dirname, 'configs'), {
 
 const filepath = conf.saveToFile('database', { space: 2 });
 
+// tslint:disable-next-line:no-console
 console.log(`Saved 'database' namespace configuration file: ${filepath}`);
 
 export default conf.final();

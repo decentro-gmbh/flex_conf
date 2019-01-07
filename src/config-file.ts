@@ -75,11 +75,11 @@ export class ConfigFile {
    * be listed that are sub-folders of the root config folder.
    * @returns Array of folder names.
    */
-  getFolders(): Array<string> {
+  getFolders(): string[] {
     return path.dirname(this.filepath)
       .substr(this.configFolder.length + 1)
       .split(path.sep)
-      .filter(d => d.length > 0);
+      .filter((d) => d.length > 0);
   }
 
   /**
@@ -111,7 +111,7 @@ export class ConfigFile {
   /**
    * Load the JSON object contained by the configuration file.
    */
-  loadJson(): Object {
+  loadJson(): object {
     try {
       const data = fs.readFileSync(this.filepath, 'utf8');
       try {

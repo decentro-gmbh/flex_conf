@@ -44,7 +44,7 @@ export function getFilesFromDir(dirpath, filetype = null, recursive = false) {
 
   // Only consider valid <filetype> files and return them sorted
   if (filetype) {
-    files = files.filter(file => file.endsWith(`.${filetype}`));
+    files = files.filter((file) => file.endsWith(`.${filetype}`));
   }
   files.sort();
 

@@ -2,8 +2,8 @@
  * Tests for the flex-conf module
  */
 
-import { FlexConf } from '../src/flex-conf';
 import { join } from 'path';
+import { FlexConf } from '../src/flex-conf';
 
 describe('Correct loading of configuration files', () => {
   test('Tag-based configuration file loading', () => {
@@ -15,10 +15,10 @@ describe('Correct loading of configuration files', () => {
           folderTags: true,
           tagDefinitions: {
             tag1: {
-              applies: val => val === `val${tag1}`,
+              applies: (val) => val === `val${tag1}`,
             },
             tag2: {
-              applies: val => val === `val${tag2}`,
+              applies: (val) => val === `val${tag2}`,
             },
           },
         });

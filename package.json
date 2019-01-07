@@ -36,6 +36,7 @@
     "nconf": "~0.10.0"
   },
   "devDependencies": {
+    "@decentro/tslint": "^1.0.1",
     "@types/jest": "^23.3.10",
     "@types/nconf": "0.0.37",
     "@types/node": "^10.12.18",
