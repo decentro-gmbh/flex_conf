@@ -1,7 +1,7 @@
 {
   "extends": "@decentro/tslint",
   "rules": {
-    "no-magic-numbers": false,
+    "no-magic-numbers": true,
     "only-arrow-functions": false
   }
 }

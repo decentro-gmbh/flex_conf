@@ -174,7 +174,7 @@ export class FlexConf {
       encoding: options.encoding || 'utf8',
       flag: options.flag || 'w',
     });
-    fs.chmodSync(options.filepath, options.mode || 0o600);
+    fs.chmodSync(options.filepath, options.mode || fs.constants.S_IWUSR);
 
     return options.filepath;
   }
